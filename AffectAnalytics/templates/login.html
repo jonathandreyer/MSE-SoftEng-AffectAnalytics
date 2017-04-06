@@ -2,16 +2,16 @@
 {% block body %}
 <h2>Login</h2>
 {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
-<form action="{{ url_for('login') }}" method="post">
+<form enctype=multipart/form-data method="post">
     <dl>
         <dt>Username:
-        <dd><input type="text" name="username">
-        <dt>Token File:
-        <dd><input type="file" name="tokenfile">
-        <dt>Token:
-        <dd><input type="password" name="token">
-        <dd><input type="Submit" value="Upload">
-        <dd><input type="submit" value="Login">
+        <dd><input type=text name="username">
+
+        <dt>Github access Token File:
+        <dd><input type=file name="tokenfile">
+
+        <dd><input type=submit value="Login">
+
     </dl>
 </form>
 {% endblock %}

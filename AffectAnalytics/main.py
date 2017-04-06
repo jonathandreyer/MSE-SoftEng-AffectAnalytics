@@ -1,20 +1,26 @@
+# -*- coding: utf-8 -*-
+
 import os
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from werkzeug.utils import secure_filename
 
-import argparse
-import github.github as gh
-from github.emotions import Emotions
+import resstrings as res
+import github.github as github
+# from github.emotions import Emotions
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument("-t", "--token", type=str, help="Path to token file for GitHub access")
-# args = parser.parse_args()
-#
-# gh = gh.GitHub(args.token)
+
+# Token file that's used to access Github
+TOKEN = None
+
+# The GitHub object
+GITHUB = None
+
+# TODO The User that is now logged in, may be able to check this in the session object
+
 
 # Constants, paths, etc.
-UPLOAD_FOLDER = '/path/to/the/uploads'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+UPLOAD_FOLDER = './uploads'  # check to see where this is exactly
+ALLOWED_EXTENSIONS = set(['token', 'tk'])
 
 # Create the application instance
 app = Flask(__name__)
@@ -24,7 +30,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    #DATABASE=os.path.join(app.root_path, 'flaskr.db'),
+    # DATABASE=os.path.join(app.root_path, 'flaskr.db'),
     DEBUG=True,
     SECRET_KEY='development key',
     USERNAME='admin',
@@ -35,18 +41,41 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 @app.route('/')
 def show_entries():
+    if session.get('logged_in'):
+        if TOKEN:
+
+            flash("You are logged in, decide the pull requests you want to evaluate")
+            global GITHUB
+            GITHUB = github.GitHub(TOKEN)
+
+
+        else:
+            print "Token does not exist"
+
+        print "TOKEN = ", TOKEN
+
     # We will now use Templates to render html.
+    # We should actually render the index.
     return render_template('show_entries.html')
+
+
+@app.route('/repos', methods=['POST'])
+def get_repos():
+    if not session.get('logged_in'):
+        abort(401)
+    print "Coming soon"
 
 
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
         abort(401)
-    #db = get_db()
-    #db.execute('insert into entries (title, text) values (?, ?)',
+    # Don't use any database, just the browser's memory
+    # db = get_db()
+    # db.execute('insert into entries (title, text) values (?, ?)',
     #           [request.form['title'], request.form['text']])
-    #db.commit()
+    # db.commit()
+
     print request.form['title']
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
@@ -64,12 +93,44 @@ def help():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Don't use any database, just the browser's memory
+    global TOKEN
     error = None
+    valid_file = False
+
     if request.method == 'POST':
-        print "post!!"
-        print request.form['username']
+
+        # Check if the post request has the file part
+        if 'tokenfile' not in request.files:
+            flash(res.no_file)
+            return redirect(request.url)
+
+        token_file = request.files['tokenfile']
+
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if token_file.filename == '':
+            flash(res.no_file_selected)
+            return redirect(request.url)
+
+        # Check the file that was uploaded.
+        if token_file and allowed_file(token_file.filename):
+            # The file uploaded is valid.
+
+            filename = secure_filename(token_file.filename)
+            # Do we really want to save?
+            token_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # We just want the value.
+
+            TOKEN = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+        else:
+            flash(res.invalid_file)
+            return redirect(request.url)
+
+        username = request.form['username']
         session['logged_in'] = True
-        flash('You were logged in')
+        flash(res.login_success(username))
         return redirect(url_for('show_entries'))
     return render_template('login.html', error=error)
 
