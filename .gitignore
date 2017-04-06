@@ -1,6 +1,9 @@
 # IntelliJ detritus
 *.idea/
 
+# Flask server uploads
+**/uploads/*
+
 # Python files
 # Compiled python files
 **.pyc
