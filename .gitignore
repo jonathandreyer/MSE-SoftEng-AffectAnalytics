@@ -1,6 +1,11 @@
 # IntelliJ detritus
 *.idea/
 
+# Python files
+# Compiled python files
+**.pyc
+
+# GraphQL or other files
 target/
 pom.xml.tag
 pom.xml.releaseBackup
