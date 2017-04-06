@@ -15,9 +15,11 @@ if __name__ == "__main__":
 
     gh = gh.GitHub(args.token)
 
-    # print(gh.get_repositories('drakesinger'))
+    repos = gh.get_repositories('drakesinger')
+
+    print(repos)
     #print(gh.get_repositories('jonathandreyer'))
-    print(gh.get_pullrequest('jonathandreyer', 'test'))
-    print (Emotions.parse(gh.get_emotions('jonathandreyer', 'test', 1)))
+    #print(gh.get_pullrequest('jonathandreyer', 'test'))
+    #print (Emotions.parse(gh.get_emotions('jonathandreyer', 'test', 1)))
 
     exit(0)

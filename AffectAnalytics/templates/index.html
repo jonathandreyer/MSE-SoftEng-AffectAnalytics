@@ -1,22 +1,16 @@
-<!doctype html>
-<title>Affect Analytics</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<div class=page>
-<h1>Affect Analytics</h1>
-<div class=metanav>
-Welcome.
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
 
-Some stuff here?
-<ul class=graphene_result>
-{% for entry in graphene_result %}
-<li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+    <ul class="repositories">
+        {% for repo in repos %}
+            <li><a href="{{ url_for('get_repo', owner=repo.owner, repo_name=repo.name ) }}">{{ repo.name }}</a></li>
+        {% else %}
+            <li><em>You have no repositories.</em></li>
+        {% endfor %}
+    </ul>
 {% else %}
-<li><em>Unbelievable.  No entries here so far</em>
-{% endfor %}
-</ul>
-</div>
-{% for message in get_flashed_messages() %}
-<div class=flash>{{ message }}</div>
-{% endfor %}
-{% block body %}{% endblock %}
-</div>
+    Please login in order to be able to use the application.
+{% endif %}
+
+{% endblock %}

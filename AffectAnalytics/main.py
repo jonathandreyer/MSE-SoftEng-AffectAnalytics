@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 
 import resstrings as res
 import github.github as github
+
 # from github.emotions import Emotions
 
 
@@ -16,7 +17,7 @@ TOKEN = None
 GITHUB = None
 
 # TODO The User that is now logged in, may be able to check this in the session object
-
+GH_USERNAME = None
 
 # Constants, paths, etc.
 UPLOAD_FOLDER = './uploads'  # check to see where this is exactly
@@ -40,30 +41,43 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 
 @app.route('/')
-def show_entries():
+def index():
+    global GITHUB
+
     if session.get('logged_in'):
         if TOKEN:
-
             flash("You are logged in, decide the pull requests you want to evaluate")
-            global GITHUB
             GITHUB = github.GitHub(TOKEN)
 
-
+            if GH_USERNAME:
+                repos = GITHUB.get_repositories(GH_USERNAME)
+                return render_template('index.html', repos=repos)
         else:
+            # Inform the user?
             print "Token does not exist"
-
-        print "TOKEN = ", TOKEN
 
     # We will now use Templates to render html.
     # We should actually render the index.
-    return render_template('show_entries.html')
+    return render_template('index.html')
 
 
-@app.route('/repos', methods=['POST'])
-def get_repos():
+@app.route('/repo/<owner>/<repo_name>')
+def get_repo(owner, repo_name):
+    global GITHUB
+    # Check for valid session
     if not session.get('logged_in'):
         abort(401)
-    print "Coming soon"
+
+    # Get the pull requests.
+    pull_requests, nb_pull_requests = GITHUB.get_pullrequest(owner,repo_name)
+    if pull_requests:
+        print "We have PRs:\n",pull_requests
+        return render_template('show_repo.html', repo_owner=owner, repo_name=repo_name, pull_requests=pull_requests)
+    else:
+        flash("There are no Pull Requests %s!" % (repo_name) )
+    print "Owner:", owner, " repo:", repo_name
+
+    return redirect(url_for('index'))
 
 
 @app.route('/add', methods=['POST'])
@@ -78,7 +92,7 @@ def add_entry():
 
     print request.form['title']
     flash('New entry was successfully posted')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('index'))
 
 
 @app.route('/pullrequest')
@@ -94,7 +108,7 @@ def help():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # Don't use any database, just the browser's memory
-    global TOKEN
+    global TOKEN, GH_USERNAME
     error = None
     valid_file = False
 
@@ -128,10 +142,11 @@ def login():
             flash(res.invalid_file)
             return redirect(request.url)
 
-        username = request.form['username']
+        GH_USERNAME = request.form['username']
         session['logged_in'] = True
-        flash(res.login_success(username))
-        return redirect(url_for('show_entries'))
+        flash(res.login_success(GH_USERNAME))
+
+        return redirect(url_for('index'))
     return render_template('login.html', error=error)
 
 
@@ -139,7 +154,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('index'))
 
 
 def allowed_file(filename):
