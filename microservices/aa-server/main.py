@@ -69,12 +69,12 @@ def get_repo(owner, repo_name):
         abort(401)
 
     # Get the pull requests.
-    pull_requests, nb_pull_requests = GITHUB.get_pullrequest(owner,repo_name)
+    pull_requests, nb_pull_requests = GITHUB.get_pullrequest(owner, repo_name)
     if pull_requests:
         print("We have PRs:\n", pull_requests)
         return render_template('show_repo.html', repo_owner=owner, repo_name=repo_name, pull_requests=pull_requests)
     else:
-        flash("There are no Pull Requests %s!" % (repo_name) )
+        flash("There are no Pull Requests %s!" % (repo_name))
     print("Owner:", owner, " repo:", repo_name)
 
     return redirect(url_for('index'))
@@ -189,6 +189,7 @@ def upload_file():
          <input type=submit value=Upload>
     </form>
     '''
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

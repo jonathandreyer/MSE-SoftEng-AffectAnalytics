@@ -6,5 +6,6 @@ invalid_file = 'Invalid file'
 
 token_read = "Token has been read."
 
+
 def login_success(username):
     return 'Welcome %s.' % (username)

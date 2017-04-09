@@ -96,7 +96,7 @@ class Pull_Request(object):
     pr_number = int(pullrequest['number'])
     """
 
-    def __index__(self,owner, title, id, number):
+    def __index__(self, owner, title, id, number):
         self.owner = owner
         self.title = title
         self.id = id
@@ -110,7 +110,7 @@ class GitHub(object):
         token_file_path = token
         with open(token) as token_file:
             self._token = token_file.read()
-            print ("Token has been read.")
+            print("Token has been read.")
 
     # Get repository ID & name
     def get_repositories(self, user_name, n=GITHUB_DEFAULT_QUERY):
@@ -126,8 +126,8 @@ class GitHub(object):
             repo_name = repo['node']['name']
             repo_id = repo['node']['id']
             repo_url = repo['node']['url']
-            repos.append(Repository(owner=user_name,name=repo_name, url=repo_url, id=repo_id))
-            #repos.append([repo_name, repo_id, repo_url])
+            repos.append(Repository(owner=user_name, name=repo_name, url=repo_url, id=repo_id))
+            # repos.append([repo_name, repo_id, repo_url])
 
         return repos
 
