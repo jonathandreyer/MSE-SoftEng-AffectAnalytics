@@ -8,6 +8,9 @@
 # Compiled python files
 **.pyc
 
+# Docker build
+/docker-images/aa-server/tmp
+
 # GraphQL or other files
 target/
 pom.xml.tag
