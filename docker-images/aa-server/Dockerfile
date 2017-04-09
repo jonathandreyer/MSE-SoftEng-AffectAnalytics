@@ -1,6 +1,6 @@
-FROM python:3.5.1
+FROM python:3.6.1
 
-COPY ./tmp/* /app/
+COPY ./tmp/ /app/
 WORKDIR /app
 
 RUN pip install -r requirements.txt

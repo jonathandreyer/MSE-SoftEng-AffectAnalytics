@@ -10,3 +10,5 @@
 * We have created the `build-docker-image.sh` script to automate this process. In the script, we first do a copy source file, and finally run `docker build -t affectanalytics/server .`. This will update the affectanalytics/server:latest image on the current machine.
 
 * Warning: to run the script, you must be in a "Docker environment" (in other words, on Mac OS and Windows, you must have all environment variables defined so that you can use Docker machine).
+
+* Run image with command: `docker run -d -p 5000:5000 affectanalytics/server`
