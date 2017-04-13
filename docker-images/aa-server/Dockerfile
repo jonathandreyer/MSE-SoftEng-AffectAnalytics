@@ -2,6 +2,7 @@ FROM python:3.6.1
 
 COPY ./tmp/ /app/
 WORKDIR /app
+VOLUME /app/uploads
 
 RUN pip install -r requirements.txt
 
