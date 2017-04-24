@@ -1,33 +1,30 @@
 # MSE-SoftEng-AffectAnalytics
 Master Software Engineering Project.
 
-## Running the Web App
+## How do I build, validate and deploy the server?
 
-###  Prerequesites
-1. Python
-2. [Flask](http://flask.pocoo.org/)
-    To run the server you need ```flask```. You can get flask by running:
-    ```bash
-    pip install flask
-    ```
-    Or if you are using Anaconda:
-    ```bash
-    conda install flask
-    ```
-3. [Flask-Login](https://flask-login.readthedocs.io/)
-    ```pip install flask-login```
+Since version with microservices, we provide a CI/CD pipeline for the server, directly in this repo. The pipeline is built on top of Jenkins and Docker. The following process allows you to start the CI/CD server, to build the code, to run unittest and to have a running server on your machine:
 
-### Running the server locally
+1. Start the CI/CD server
+  * `cd docker-topologies/cdpipeline/`
+  * `docker-compose up`
+  * wait until jenkins has fully started
+  * Open a web browser on [http://localhost:1080](http://localhost:1080)
+  * Start the **build, validate and deploy affect analytics** job
+  * Check the results in the jenkins UI
+2. At the end of the process, you should have a running docker topology
+  * Open a web browser on [http://localhost:5000](http://localhost:5000)
 
-1. Windows
-    ```cmd
-    set FLASK_API=main.py
-    python -m flask run
-    ```
-2. Linux
-    ```bash
-    export FLASK_API=main.py
-    python -m flask run
-    ```
+## Legacy instructions (prior to version with CI/CD service)
 
+### How do I run the server?
+
+1. Build the docker image
+  * `cd docker-images/aa-server/`
+  * `./build-docker-image.sh` 
+2. Start the docker topology
+  * `cd ../../docker-topologies/runtime/`
+  * `docker-compose up`
+3. Check that the server is running
+  * Open a web browser on [http://localhost:5000](http://localhost:5000)
 
