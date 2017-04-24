@@ -24,5 +24,4 @@ class Emotions(object):
 
     @staticmethod
     def parse_split(pr_emotions, comment_emotions):
-
         return Emotions.parse(pr_emotions), Emotions.parse(comment_emotions)
