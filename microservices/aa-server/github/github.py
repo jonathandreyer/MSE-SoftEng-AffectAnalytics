@@ -105,12 +105,7 @@ class Pull_Request(object):
 
 class GitHub(object):
     def __init__(self, token):
-        # Instead of providing the token directly, we provide a path to the token file.
-        self._token = ""
-        token_file_path = token
-        with open(token) as token_file:
-            self._token = token_file.read()
-            print("Token has been read.")
+        self._token = token
 
     # Get repository ID & name
     def get_repositories(self, user_name, n=GITHUB_DEFAULT_QUERY):
@@ -127,7 +122,6 @@ class GitHub(object):
             repo_id = repo['node']['id']
             repo_url = repo['node']['url']
             repos.append(Repository(owner=user_name, name=repo_name, url=repo_url, id=repo_id))
-            # repos.append([repo_name, repo_id, repo_url])
 
         return repos
 

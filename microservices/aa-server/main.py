@@ -47,11 +47,16 @@ def index():
     if session.get('logged_in'):
         if TOKEN:
             flash("You are logged in, decide the pull requests you want to evaluate")
-            GITHUB = github.GitHub(TOKEN)
 
-            if GH_USERNAME:
-                repos = GITHUB.get_repositories(GH_USERNAME)
-                return render_template('index.html', repos=repos)
+            with open(TOKEN) as token_file:
+                token_id = token_file.read()
+                print("Token has been read.")
+
+                GITHUB = github.GitHub(token_id)
+
+                if GH_USERNAME:
+                    repos = GITHUB.get_repositories(GH_USERNAME)
+                    return render_template('index.html', repos=repos)
         else:
             # Inform the user?
             print("Token does not exist")
