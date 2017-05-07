@@ -1,5 +1,8 @@
 # MSE-SoftEng-AffectAnalytics
+
 Master Software Engineering Project.
+
+[![Build Status](https://travis-ci.org/jonathandreyer/MSE-SoftEng-AffectAnalytics.svg?branch=master)](https://travis-ci.org/jonathandreyer/MSE-SoftEng-AffectAnalytics)
 
 ## How do I build, validate and deploy the server?
 
@@ -21,10 +24,9 @@ Since version with microservices, we provide a CI/CD pipeline for the server, di
 
 1. Build the docker image
   * `cd docker-images/aa-server/`
-  * `./build-docker-image.sh` 
+  * `./build-docker-image.sh`
 2. Start the docker topology
   * `cd ../../docker-topologies/runtime/`
   * `docker-compose up`
 3. Check that the server is running
   * Open a web browser on [http://localhost:5000](http://localhost:5000)
-
