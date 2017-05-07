@@ -105,5 +105,8 @@ class TestEmotions(unittest.TestCase):
         parse_emotions(self, UNITTEST_PARSE_1, UNITTEST_PARSE_1_RESULT)
         parse_emotions(self, UNITTEST_PARSE_2, UNITTEST_PARSE_2_RESULT)
 
+    def test_fail(self):
+        self.assertTrue(False)
+
     def test_split(self):
         pass
