@@ -8,6 +8,15 @@ pipeline {
                 }
            }
        }
+       stage('Unittest') {
+           steps {
+                dir (path: "./docker-images/aa-unittest/") {
+                    sh './build-docker-image.sh'
+                    sh './run-docker-image.sh'
+                }
+                echo 'End of unittest'
+           }
+       }
        stage('Redeploy') {
            steps {
                 dir (path: "./docker-topologies/runtime/") {
