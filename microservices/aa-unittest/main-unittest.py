@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 import sys
+import xmlrunner
 
 
 if __name__ == "__main__":
-    testsuite = unittest.TestLoader().discover('.')
-    ret = not unittest.TextTestRunner(verbosity=2).run(testsuite).wasSuccessful()
+    suite = unittest.TestLoader().discover('.')
+    ret = not xmlrunner.XMLTestRunner(output='report', verbosity=2).run(suite).wasSuccessful()
     sys.exit(ret)
