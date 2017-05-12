@@ -8,6 +8,9 @@
 # Compiled python files
 **.pyc
 
+# Unittest result
+/microservices/aa-unittest/report/*
+
 # Docker build
 /docker-images/aa-server/tmp
 
