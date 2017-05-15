@@ -6,6 +6,4 @@ VOLUME /app/uploads
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python"]
-
-CMD ["main.py"]
+ENTRYPOINT python main.py -t $TOKEN -r $REPOS -d $DELAY
