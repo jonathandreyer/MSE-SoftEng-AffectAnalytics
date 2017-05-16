@@ -24,9 +24,6 @@ class Label(object):
         if self._check_label():
             self._create_label()
 
-        #if self._check_present(pr_no):
-        #    self._add_pr(pr_no)
-
         self._add_warning(pr_no)
 
     def remove_warning(self, pr_no):
@@ -39,7 +36,6 @@ class Label(object):
 
         labels = self._get(url_rel)
 
-        #print(labels)
         for l in labels:
             if l['color'] == LABEL_COLOR and l['name'] == LABEL_NAME:
                 return True
