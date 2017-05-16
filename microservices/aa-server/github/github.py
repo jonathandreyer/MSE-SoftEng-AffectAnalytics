@@ -55,7 +55,7 @@ QUERY_EMOTIONSONPULLREQUEST = '''{
         comments(last:%(last_element)s) {
           edges {
             node {
-              reactions(last:100) {
+              reactions(last:30) {
                 nodes {
                   id
                   content
