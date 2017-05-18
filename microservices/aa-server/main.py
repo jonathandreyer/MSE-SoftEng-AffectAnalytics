@@ -71,6 +71,15 @@ if __name__ == '__main__':
     if args.repos is None:
         raise Exception('Repository information is not set!')
 
+    print('-------------------------------')
+    print('-  Start polling service      -')
+    print('-------------------------------')
+    print('Parameters:')
+    print(' # TOKEN: ' + str(args.token))
+    print(' # REPOS: ' + str(args.repos))
+    print(' # DELAY: ' + str(args.delay))
+    print()
+
     kwargs = {"token": args.token, "repos": args.repos}
 
     periodic_polling = PollingGithub(**kwargs)
