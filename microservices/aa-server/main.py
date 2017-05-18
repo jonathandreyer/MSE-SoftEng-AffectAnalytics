@@ -62,7 +62,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Argument not valid!')
     parser.add_argument('-t', '--token', type=str, help='github token of repos')
     parser.add_argument('-r', '--repos', type=str, nargs='*', help='user/repos')
-    parser.add_argument('-d', '--delay', type=int, nargs='*', help='time between polling', default=10)
+    parser.add_argument('-d', '--delay', type=int, help='time between polling', default=10)
     args = parser.parse_args()
 
     if args.token is None:
@@ -71,9 +71,11 @@ if __name__ == '__main__':
     if args.repos is None:
         raise Exception('Repository information is not set!')
 
+    print()
     print('-------------------------------')
     print('-  Start polling service      -')
     print('-------------------------------')
+    print()
     print('Parameters:')
     print(' # TOKEN: ' + str(args.token))
     print(' # REPOS: ' + str(args.repos))
