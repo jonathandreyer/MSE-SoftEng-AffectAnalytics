@@ -15,9 +15,5 @@ script:
   - ./build-docker-image.sh
   - cd ../aa-unittest/
   - ./build-docker-image.sh
-  - cd ../../docker-topologies/runtime
-  - docker-compose up -d
   - cd ../../docker-images/aa-unittest/
   - ./run-docker-image.sh
-  - cd ../../docker-topologies/runtime
-  - docker-compose down
