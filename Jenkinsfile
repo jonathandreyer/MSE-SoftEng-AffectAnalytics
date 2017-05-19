@@ -22,7 +22,6 @@ pipeline {
                 dir (path: "./docker-topologies/runtime/") {
                     echo "current directory is: ${pwd()}"
                     sh './export-env-var.sh'
-                    sh 'more .env'
                     sh 'docker-compose down'
                     sh 'docker-compose up -d'
                 }
