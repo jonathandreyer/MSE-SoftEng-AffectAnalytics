@@ -63,6 +63,7 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--token', type=str, help='github token of repos')
     parser.add_argument('-r', '--repos', type=str, nargs='*', help='user/repos')
     parser.add_argument('-d', '--delay', type=int, help='time between polling', default=10)
+    parser.add_argument('-l', '--log', help='Enable debug log', action='store_true')
     args = parser.parse_args()
 
     if args.token is None:
@@ -80,6 +81,8 @@ if __name__ == '__main__':
     print(' # TOKEN: ' + str(args.token))
     print(' # REPOS: ' + str(args.repos))
     print(' # DELAY: ' + str(args.delay))
+    if args.log:
+        print(' # LOG:   enable')
     print()
 
     kwargs = {"token": args.token, "repos": args.repos}
