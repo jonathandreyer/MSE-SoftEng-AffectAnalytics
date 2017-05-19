@@ -27,6 +27,11 @@ pipeline {
                 }
            }
        }
+       stage('Validation') {
+           steps {
+               echo 'Check container service is running !'
+           }
+       }
        /*stage('API tests') {
            steps {
                dir (path: "./docker-images/oa-server-specs/") {
