@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo TOKEN=$TOKEN > .env
-echo REPOS=$REPOS >> .env
-echo DELAY=$DELAY >> .env
+echo TOKEN=$AA_TOKEN > .env
+echo REPOS=$AA_REPOS >> .env
+echo DELAY=$AA_DELAY >> .env
 
 more .env
