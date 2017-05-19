@@ -6,3 +6,4 @@ if [ -z ${AA_REPOS+x} ]; then echo "Repos is unset"; exit 1; else echo "Repos is
 echo TOKEN=$AA_TOKEN > .env
 echo REPOS=$AA_REPOS >> .env
 if ! [ -z ${AA_DELAY+x} ]; then echo DELAY=$AA_DELAY >> .env; fi
+if ! [ -z ${AA_DEBUG+x} ]; then echo DEBUG=$AA_DEBUG >> .env; fi

@@ -6,4 +6,5 @@ services:
       - TOKEN=${TOKEN}
       - REPOS=${REPOS}
       - DELAY=${DELAY}
+      - DEBUG=${DEBUG}
     restart: always

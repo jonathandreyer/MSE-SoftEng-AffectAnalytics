@@ -6,6 +6,7 @@ services:
       - AA_TOKEN=${TOKEN}
       - AA_REPOS=${REPOS}
       - AA_DELAY=${DELAY}
+      - AA_DEBUG=${DEBUG}
     ports:
      - "1080:8080"
     volumes:
