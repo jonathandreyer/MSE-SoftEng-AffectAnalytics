@@ -8,6 +8,15 @@
 # Compiled python files
 **.pyc
 
+# Unittest result
+/microservices/aa-unittest/report/*
+
+# Docker build
+/docker-images/aa-server/tmp
+
+# Docker .env for docker-compose
+/docker-topologies/runtime/*.env
+
 # GraphQL or other files
 target/
 pom.xml.tag
