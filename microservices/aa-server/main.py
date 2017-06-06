@@ -51,6 +51,11 @@ def polling_github(token, repos):
                 gh_lbl.remove_warning(pr_no)
 
 
+def print_and_log(msg=''):
+    print(msg)
+    logging.info(msg)
+
+
 class PollingGithub(TaskThread):
     def task(self, **kwargs):
         logging.debug('Task wake up!')
@@ -72,18 +77,23 @@ if __name__ == '__main__':
     if args.repos is None:
         raise Exception('Repository information is not set!')
 
-    print()
-    print('-------------------------------')
-    print('-  Start polling service      -')
-    print('-------------------------------')
-    print()
-    print('Parameters:')
-    print(' # TOKEN: ' + str(args.token))
-    print(' # REPOS: ' + str(args.repos))
-    print(' # DELAY: ' + str(args.delay))
     if args.log:
-        print(' # LOG:   enable')
-    print()
+        logging.basicConfig(format='%(asctime)s %(message)s', level=logging.DEBUG)
+    else:
+        logging.basicConfig(format='%(asctime)s %(message)s')
+
+    print_and_log()
+    print_and_log('-------------------------------')
+    print_and_log('-  Start polling service      -')
+    print_and_log('-------------------------------')
+    print_and_log()
+    print_and_log('Parameters:')
+    print_and_log(' # TOKEN: ' + str(args.token))
+    print_and_log(' # REPOS: ' + str(args.repos))
+    print_and_log(' # DELAY: ' + str(args.delay))
+    if args.log:
+        print_and_log(' # LOG:   enable')
+    print_and_log()
 
     kwargs = {"token": args.token, "repos": args.repos}
 

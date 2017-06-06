@@ -5,4 +5,4 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT python main.py -t $TOKEN -r $REPOS -d $DELAY ${DEBUG:+-l}
+ENTRYPOINT python main.py -t $TOKEN -r $REPOS ${DELAY:+-d $DELAY} ${DEBUG:+-l}

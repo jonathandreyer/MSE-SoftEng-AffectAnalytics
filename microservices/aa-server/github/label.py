@@ -21,7 +21,7 @@ class Label(object):
         self._repo = repo
 
     def add_warning(self, pr_no):
-        if self._check_label():
+        if not self._check_label():
             self._create_label()
 
         self._add_warning(pr_no)
