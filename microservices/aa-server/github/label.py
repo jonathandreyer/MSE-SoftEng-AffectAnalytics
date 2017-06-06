@@ -6,7 +6,7 @@ import re
 API_V3_URL = 'https://api.github.com'
 
 LABEL_NAME = "Need check"
-LABEL_COLOR = "f50000"
+LABEL_COLOR = "ffa24c"
 
 QUERY_CREATE = '''{
   "name": "%(label_name)s",
