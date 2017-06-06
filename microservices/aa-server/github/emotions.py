@@ -25,3 +25,12 @@ class Emotions(object):
     @staticmethod
     def parse_split(pr_emotions, comment_emotions):
         return Emotions.parse(pr_emotions), Emotions.parse(comment_emotions)
+
+
+class BalanceEmotions(object):
+    @staticmethod
+    def is_bad_emotions(balance):
+        if balance[0] < balance[1]:
+            return True
+        else:
+            return False

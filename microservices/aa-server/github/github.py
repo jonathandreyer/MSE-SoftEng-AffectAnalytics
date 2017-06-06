@@ -55,7 +55,7 @@ QUERY_EMOTIONSONPULLREQUEST = '''{
         comments(last:%(last_element)s) {
           edges {
             node {
-              reactions(last:100) {
+              reactions(last:30) {
                 nodes {
                   id
                   content
@@ -82,11 +82,11 @@ class Repository(object):
 
     def get_pull_requests(self):
         # TODO get_pull_requests
-        print("get_pull_requests not implemented")
+        raise Exception("get_pull_requests not implemented")
 
     def get_number_of_pull_requests(self):
         # TODO get_number_of_pull_requests
-        print("get_number_of_pull_requests not implemented")
+        raise Exception("get_number_of_pull_requests not implemented")
 
 
 class Pull_Request(object):

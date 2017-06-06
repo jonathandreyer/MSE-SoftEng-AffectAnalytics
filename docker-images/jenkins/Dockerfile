@@ -1,4 +1,4 @@
-FROM jenkins:2.46.2-alpine
+FROM jenkinsci/jenkins:2.61-alpine
 
 
 #

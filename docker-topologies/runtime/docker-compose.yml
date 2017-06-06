@@ -2,10 +2,8 @@ version: '2'
 services:
   affectanalytics:
     image: affectanalytics/server
-    ports:
-      - "5000:5000"
-    restart: always
-    volumes:
-      - data_token:/data/token
-volumes:
-  data_token:
+    environment:
+      - TOKEN=${TOKEN}
+      - REPOS=${REPOS}
+      - DELAY=${DELAY}
+      - DEBUG=${DEBUG}
