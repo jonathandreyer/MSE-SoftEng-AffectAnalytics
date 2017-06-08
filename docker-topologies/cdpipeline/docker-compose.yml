@@ -1,0 +1,16 @@
+version: '2'
+services:
+  jenkins:
+    build: ../../docker-images/jenkins
+    environment:
+      - AA_TOKEN=${TOKEN}
+      - AA_REPOS=${REPOS}
+      - AA_DELAY=${DELAY}
+      - AA_DEBUG=${DEBUG}
+    ports:
+     - "1080:8080"
+    volumes:
+     - jenkins-data:/var/jenkins_home
+     - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+  jenkins-data:

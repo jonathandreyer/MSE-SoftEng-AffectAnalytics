@@ -1,0 +1,9 @@
+version: '2'
+services:
+  affectanalytics:
+    image: affectanalytics/server
+    environment:
+      - TOKEN=${TOKEN}
+      - REPOS=${REPOS}
+      - DELAY=${DELAY}
+      - DEBUG=${DEBUG}
