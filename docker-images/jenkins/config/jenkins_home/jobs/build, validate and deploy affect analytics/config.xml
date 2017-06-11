@@ -13,7 +13,7 @@
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
-          <url>https://github.com/jonathandreyer/MSE-SoftEng-AffectAnalytics</url>
+          <url>https://github.com/Drakesinger/MSE-SoftEng-AffectAnalytics</url>
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
       <branches>
