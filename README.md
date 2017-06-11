@@ -13,15 +13,15 @@ Since version with microservices, we provide a CI/CD pipeline for the server, di
   * `cd docker-topologies/cdpipeline/`
   * `export TOKEN="XXX"`
   * `export REPOS="user/repository"`
-  * `export DELAY=60` (optionnal)
-  * `export DEBUG=1`  (optionnal)
+  * `export DELAY=60` (optional)
+  * `export DEBUG=1`  (optional)
   * `docker-compose up`
-  * wait until jenkins has fully started
+  * wait until Jenkins has fully started
   * Open a web browser on [http://localhost:1080](http://localhost:1080)
   * Start the **build, validate and deploy affect analytics** job
-  * Check the results in the jenkins UI
+  * Check the results in the Jenkins UI
 2. At the end of the process, you should have a running docker topology
-  * Open a web browser on [http://localhost:5000](http://localhost:5000)
+  * AffectAnalytics will run in background
 
 
 ## Legacy instructions (prior to version with CI/CD service)
@@ -35,11 +35,11 @@ Since version with microservices, we provide a CI/CD pipeline for the server, di
   * `cd ../../docker-topologies/runtime/`
   * `export TOKEN="XXX"`
   * `export REPOS="user/repository"`
-  * `export DELAY=60` (optionnal)
-  * `export DEBUG=1`  (optionnal)
+  * `export DELAY=60` (optional)
+  * `export DEBUG=1`  (optional)
   * `docker-compose up`
-3. Check that the server is running
-  * Open a web browser on [http://localhost:5000](http://localhost:5000)
+3. At the end of the process, you should have a running docker container
+  * AffectAnalytics will run in background
 
 
 ### How do I run the server by docker image?
