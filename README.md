@@ -2,7 +2,7 @@
 
 Master Software Engineering Project.
 
-[![Build Status](https://travis-ci.org/Drakesinger/MSE-SoftEng-AffectAnalytics.svg?branch=master)](https://travis-ci.org/Drakesinger/MSE-SoftEng-AffectAnalytics)
+[![Build Status](https://travis-ci.org/jonathandreyer/MSE-SoftEng-AffectAnalytics.svg?branch=master)](https://travis-ci.org/jonathandreyer/MSE-SoftEng-AffectAnalytics)
 
 
 ## How do I build, validate and deploy the server?
